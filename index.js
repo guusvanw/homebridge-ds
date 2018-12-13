@@ -15,6 +15,8 @@ const AccessoryFactory = require('./lib/accessories/factory');
 
 let PlatformAccessory, Service, Characteristic, UUIDGen, HKCategories, CustomTypes;
 
+var fs = require('fs');
+
 module.exports = homebridge => {
     console.log(`***** homebridge API version: ${homebridge.version} *****`);
 
@@ -42,9 +44,13 @@ class DigitalStromPlatform extends EventEmitter {
 
         this.log.info(`Plugin - ***** ${PluginName} init *****`);
 
+        if (!fs.existsSync(this.config.localeFolder)){
+            fs.mkdirSync(this.config.localeFolder);
+        }
+
         i18n.configure({
             locales: ['en', 'de'],
-            directory: process.env.HOME + '/data/locales',
+            directory: this.config.localeFolder,
             logDebugFn: msg => {
                 log.debug(`i18n - ${msg}`)
             },
@@ -135,9 +141,9 @@ class DigitalStromPlatform extends EventEmitter {
         };
         this.accessories[accessory.UUID] = accessory;
 
-        if (Object.keys(this.accessories).length >= 100) {
-            throw new Error("HomeKit enforces a limit of 100 accessories per bridge.");
-        };
+        // if (Object.keys(this.accessories).length >= 100) {
+        //     throw new Error("HomeKit enforces a limit of 100 accessories per bridge.");
+        // };
 
         return this
     }
