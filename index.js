@@ -50,7 +50,7 @@ class DigitalStromPlatform extends EventEmitter {
 
         i18n.configure({
             locales: ['en', 'de'],
-            directory: this.config.localeFolder,
+            directory: './locale',
             logDebugFn: msg => {
                 log.debug(`i18n - ${msg}`)
             },
