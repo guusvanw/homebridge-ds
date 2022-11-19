@@ -4,6 +4,7 @@
 /* jshint esversion: 6, strict: true, node: true */
 
 "use strict";
+const path = require('path');
 const EventEmitter = require('events').EventEmitter;
 const i18n = require("i18n");
 
@@ -44,8 +45,14 @@ class DigitalStromPlatform extends EventEmitter {
 
         this.log.info(`Plugin - ***** ${PluginName} init *****`);
 
+        this.log.info(`Checking if locale folder excists... (${path.resolve(this.config.localeFolder)})`);
         if (!fs.existsSync(this.config.localeFolder)){
+            this.log.info(`Locale folder doesn't excist... Trying to create... (${this.config.localeFolder})`);
             fs.mkdirSync(this.config.localeFolder);
+            this.log.info(`Locale folder succesfully created. (${this.config.localeFolder})`);
+        }
+        else {
+            this.log.info(`Folder exists... (${this.config.localeFolder})`);
         }
 
         i18n.configure({
