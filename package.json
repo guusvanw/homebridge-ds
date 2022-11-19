@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-ds",
+  "name": "homebridge-dss",
   "version": "0.0.2",
   "description": "digitalSTROM plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "MIT",
