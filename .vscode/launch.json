@@ -49,9 +49,10 @@
 			"preLaunchTask": "build",
 			"windows": {
 				"program": "${env:APPDATA}\\npm\\node_modules\\homebridge\\bin\\homebridge",
+                "args": ["-I", "-D"],
 				"env": {
 					"FORCE_COLOR": "1",
-					"DEBUG": "homebridge-veml7700-sensor"
+					"DEBUG": "homebridge-dss"
 				}
 			}
 		}
